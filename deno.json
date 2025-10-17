@@ -1,4 +1,13 @@
 {
+  "tasks": {
+    "run": "deno run -P main.ts"
+  },
+  "permissions": {
+    "default": {
+      "net": true
+    }
+  },
+  "unstable": ["broadcast-channel", "kv"],
   "imports": {
     "@std/ulid": "jsr:@std/ulid@^1.0.0"
   }
