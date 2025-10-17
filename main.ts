@@ -17,10 +17,19 @@ const sendMessage = async (socket: WebSocket, entry: MessageEntry) => {
   }
 };
 
+const authToken = Deno.env.get("AUTH_TOKEN");
+if (!authToken) {
+  throw new Error("$AUTH_TOKEN environment variable not set");
+}
+
 const kv = await Deno.openKv();
 const sendChannel = new BroadcastChannel("message");
 
 Deno.serve(async (req) => {
+  if (req.headers.get("authorization") !== authToken) {
+    return new Response("Unauthorized", { status: 401 });
+  }
+
   if (req.method === "GET") {
     if (req.headers.get("upgrade") !== "websocket") {
       return new Response("Not Implemented", { status: 501 });

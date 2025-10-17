@@ -4,6 +4,7 @@
   },
   "permissions": {
     "default": {
+      "env": ["AUTH_TOKEN"],
       "net": true
     }
   },
