@@ -4,7 +4,7 @@
   },
   "permissions": {
     "default": {
-      "env": ["AUTH_TOKEN"],
+      "env": ["AUTH_TOKEN", "PORT"],
       "net": true
     }
   },

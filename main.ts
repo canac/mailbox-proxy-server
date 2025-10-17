@@ -25,7 +25,8 @@ if (!authToken) {
 const kv = await Deno.openKv();
 const sendChannel = new BroadcastChannel("message");
 
-Deno.serve(async (req) => {
+const port = parseInt(Deno.env.get("PORT") ?? "");
+Deno.serve({ port: port || undefined }, async (req) => {
   if (req.headers.get("authorization") !== authToken) {
     return new Response("Unauthorized", { status: 401 });
   }
